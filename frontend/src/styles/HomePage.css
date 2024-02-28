@@ -1,0 +1,376 @@
+.home-container {
+    width: 100%;
+    background-color: #ffffff; /* Assuming white background */
+  }
+  .home-container {
+    /* Ensure that your home container fills the space between header and footer */
+    min-height: calc(100vh - var(--header-height) - var(--footer-height));
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .main-image-container {
+    /* Center the image in the available space */
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .main-image {
+    /* Adjust width and height to the desired size to make it a square */
+    width: 500px; 
+    height: 500px; 
+    object-fit: cover; /* This will ensure the image covers the square area without distortion */
+    border-radius: 20px; /* Adjust this value to get the desired rounded corners */
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    background-color: #ffffff; /* Assuming white background */
+  }
+  
+  .logo {
+    height: 60px; /* Adjust the size as needed */
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .login-btn {
+    padding: 10px 20px;
+    background-color:rgb(2, 109, 2); /* The blue color from your logo   #9ddc00
+    #6cad01 #a2df00*/ 
+   
+    border: none;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .login-btn:hover {
+    background-color: #6cad01; /* A slightly darker blue for hover effect */
+  }
+  
+  .menu-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+
+  .signup-section {
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    width: 90%; /* Fallback for small screens */
+  }
+  
+  @media (min-width: 600px) {
+    .signup-section {
+      width: 50%; /* Half-width on medium screens */
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .signup-section {
+      width: 30%; /* Narrower on large screens */
+      max-width: 400px; /* Maximum width to not exceed */
+    }
+  }
+  .signup-section legend {
+    width: auto;
+    padding: 0 10px; /* Padding on the sides of the text */
+    margin-left: 20px; /* To offset the legend from the very edge */
+  }
+  
+  .google-sign-up-btn {
+    background-color: #4285F4; /* Google blue */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  .google-sign-up-btn:hover {
+    background-color: #357ae8; /* Slightly darker blue */
+  }
+  
+  .email-sign-up-btn {
+    /* Add styles for the email sign-up button */
+    background-color:rgb(2, 109, 2);/* A green color */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  .email-sign-up-btn:hover {
+    background-color: #0ec748; /* Slightly darker green */
+  }
+  
+  .testimonies-section {
+    /* Add styles for the testimonies section */
+    margin-top: 20px;
+  }
+  
+  /* Google Sign Up Button */
+  .google-sign-up-btn {
+    background-color: #4285F4; /* Google blue */
+    color: white; /* White text */
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 16px; /* Adjust as needed */
+    display: inline-block; /* To apply padding and margin correctly */
+  }
+  
+  .google-sign-up-btn:hover {
+    background-color: #357ae8; /* Slightly darker blue on hover */
+  }
+  
+  /* Email sign up and other text */
+  .signup-section p {
+    color: #333; /* Dark grey text */
+    font-size: 14px; /* Adjust as needed */
+    line-height: 1.6; /* Spacing for readability */
+    position: relative; /* For absolute positioning of lines */
+  }
+  
+  /* Email Sign Up Button */
+  .email-sign-up-btn {
+    background-color:rgb(2, 109, 2); /* A green color */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 16px; /* Adjust as needed */
+    display: block; /* Take full width */
+    margin: 20px auto; /* Center the button */
+  }
+  
+  .email-sign-up-btn:hover {
+    background-color: #2c8b4a; /* Slightly darker green on hover */
+  }
+  
+  /* Lines on either side of the 'Or use your email address' text */
+  .signup-section p::before,
+  .signup-section p::after {
+    content: "";
+    background-color: #dcdcdc; /* Light grey lines */
+    height: 1px;
+    width: 30%; /* Adjust based on your design */
+    position: absolute; /* Absolute positioning relative to the paragraph */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%);
+  }
+  
+  .signup-section p::before {
+    left: 0;
+  }
+  
+  .signup-section p::after {
+    right: 0;
+  }
+  
+  /* Adjust the legend for the 'Quick Sign Up' */
+  .signup-section legend {
+    background-color: #ffffff; /* White background */
+    padding: 0 10px; /* Padding on the sides of the text */
+    border-radius: 4px; /* Rounded corners */
+    /* Position the legend */
+    position: absolute;
+    top: -14px; /* Half of the font-size */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 18px; /* Adjust as needed */
+    font-weight: bold; /* Make the font bold */
+  }
+  /* Fieldset and Legend Styling */
+fieldset {
+    border: 2px solid #dcdcdc; /* Grey border to match the design */
+    border-radius: 10px; /* Rounded corners for the fieldset */
+    padding: 20px;
+    position: relative; /* To position the legend and lines correctly */
+    text-align: center;
+    background-color: #fff; /* White background */
+    width: -moz-fit-content;
+    width: fit-content;
+    margin: auto; /* Centering the fieldset */
+  }
+  
+  /* Legend Styling */
+  legend {
+    background-color: #fff; /* White background */
+    position: absolute; /* Positioning the legend absolutely */
+    top: -14px; /* Half of font-size to push it above the fieldset */
+    left: 50%; /* Center the legend */
+    transform: translateX(-50%); /* Precise centering */
+    padding: 0 4px; /* Padding on the sides of the legend text */
+    font-weight: bold; /* Make the text bold */
+  }
+  
+  /* Google Sign Up Button */
+  .google-sign-up-btn {
+    background-color: #4285F4; /* Google's brand blue */
+    color: white; /* White text */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 20px; /* Space above the button */
+    cursor: pointer;
+  }
+  
+  .google-sign-up-btn:hover {
+    background-color: #357ae8; /* Darker blue on hover */
+  }
+  
+  /* Email Sign Up Text and Button */
+  .email-sign-up-text {
+    display: block; /* Display as block to allow margins */
+    margin: 20px auto; /* Vertical space above and below */
+    position: relative; /* For line positioning */
+  }
+  
+  .email-sign-up-text::before,
+  .email-sign-up-text::after {
+    content: '';
+    background-color: #dcdcdc; /* Light grey color for lines */
+    height: 1px;
+    width: 25%; /* Adjust the width of the lines */
+    position: absolute; /* Position absolute relative to the text */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Precise centering */
+  }
+  
+  .email-sign-up-text::before {
+    left: -30%; /* Positioning the line to the left of the text */
+  }
+  
+  .email-sign-up-text::after {
+    right: -30%; /* Positioning the line to the right of the text */
+  }
+  
+  /* Email Sign Up Button */
+  .email-sign-up-btn {
+    background-color:rgb(2, 109, 2); /* Green color */
+    color: white; /* White text */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    display: block; /* Display as block to occupy full width */
+    margin: 20px auto; /* Margin for spacing */
+    cursor: pointer;
+  }
+  
+  .email-sign-up-btn:hover {
+    background-color: #6cad01;/* Darker green on hover */
+  }
+
+  .testimonies-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 10vh; /* Adjust as necessary */
+    color: #6cad01; ;
+  }
+  .testimonies-section h2 {
+    text-transform: lowercase; /* Convert text to lowercase */
+  }
+  
+  .testimonies-section h2::first-letter {
+    text-transform: uppercase; /* Capitalize the first letter */
+  }
+  
+  .testimonies-section h2::before {
+    content: 'Testimonies'; /* Insert capital T before the word */
+    text-decoration: underline; /* Underline the letter */
+    margin-right: 0.2em; /* Adjust spacing as necessary */
+  }
+
+  .google-sign-up-btn {
+    align-items: center;
+    padding: 10px 20px; /* Adjust padding as needed */
+    background-color:blue; /* Adjust background color as needed */
+    border: 1px solid #ccc; /* Adjust border properties as needed */
+    border-radius: 5px; /* Adjust border radius as needed */
+  }
+  
+  .google-sign-up-btn img {
+    width: 30px; /* Adjust image size as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 10px; /* Adjust spacing between image and text as needed */
+  }
+
+  .header {
+    border-top: 5px solid;  /* Replace with your top border color */
+    border-bottom: 60px solid;  /* Replace with your bottom border color */
+    position: relative;
+    height: 120px; /* This height should be enough to show text and borders */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .header-text1 {
+    position:absolute;
+    left: 50%;
+    top: 130px; /* 10px from the top of the parent */
+    left: 900px; /* 10px from the left of the parent */
+    transform: translateX(-50%);
+    font-size: 50px; /* Choose your font size */
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    color: white; /* This color will apply to both white-text and black-text by default */
+    z-index: 10;
+ 
+  }
+  .header-text3 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 50px; /* Choose your font size */
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    color:green; /* This color will apply to both white-text and black-text by default */
+    z-index: 10;
+    padding-bottom: 20%;
+  }
+  .header-text {
+    position:absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 50px; /* Choose your font size */
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    color: white; /* This color will apply to both white-text and black-text by default */
+    z-index: 10;
+    padding-top: 3.5%;
+  }
+  .white-text {
+    top: 10px; /* Adjust this to position the text within the white banner */
+    color: #000; /* Text color for white background */
+  }
+  
+  .black-text {
+    bottom: 10px; /* Adjust this to position the text just above the black banner */
+    color:green ; /* Text color for black background */
+  }
