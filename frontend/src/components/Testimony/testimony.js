@@ -5,13 +5,14 @@ function Testimony() {
   const [logs, setLogs] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/testimony') // Adjust the URL based on your API endpoint
+    // Using the full URL
+    axios.get('http://localhost:3000/api/testimony')
       .then(response => {
         setLogs(response.data);
       })
-      .catch(error => console.error('Error fetching water logs:', error));
+      .catch(error => console.error('Error fetching testimonies:', error));
   }, []);
-
+  
   return (
     <div>
       <h1>Hello! Welcome to Hydra with Vivian the Programmer</h1>
