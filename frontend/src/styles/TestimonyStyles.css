@@ -1,0 +1,73 @@
+/* TestimonyStyles.css */
+.testimonies-container {
+  text-align: center;
+  margin: 0 auto; /* Centering if needed, otherwise remove */
+  padding: 20px;
+  background-color: #f9f9f9; /* This color will be the background of the testimonies container */
+}
+
+.testimonies-header {
+  font-size: 1.5rem; /* Bootstrap's default font sizing */
+  font-weight: bold;
+  margin-bottom: 1.5rem; /* Bootstrap's default spacing */
+}
+
+.testimony-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem; /* Bootstrap's default spacing */
+  padding: 0.5rem;
+  border-bottom: 1px solid #dee2e6; /* Bootstrap's default border color */
+}
+
+.testimony-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; /* Center text for mobile view */
+}
+
+.testimony-avatar {
+  background-color: black; /* Placeholder for an avatar */
+  border-radius: 50%;
+  width: 3rem; /* Adjust size as needed */
+  height: 3rem; /* Adjust size as needed */
+  margin-right: 1rem; /* Bootstrap's default spacing */
+}
+
+.testimony-text {
+  flex-grow: 1; /* Ensures that the text takes up the remaining space */
+}
+
+.testimony-title {
+  font-weight: bold;
+}
+
+.testimony-description {
+  font-style: italic;
+  color: #6c757d; /* Bootstrap's text-muted color */
+}
+
+/* You can define styles for testimony-rating based on your design */
+
+.testimony-actions {
+  /* Define styles for edit/delete icons, such as margins, cursor, etc. */
+}
+
+/* Responsive adjustments for Bootstrap breakpoints */
+@media (max-width: 768px) {
+  .testimony-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .testimony-content {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .testimony-avatar {
+    margin-bottom: 0.5rem; /* Adjust for vertical spacing on mobile */
+  }
+}

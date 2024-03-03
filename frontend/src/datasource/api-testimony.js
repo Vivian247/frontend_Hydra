@@ -1,73 +1,83 @@
-// Import axios for making HTTP requests
+// Import the getToken function for Authorization
+import { getToken } from '../components/auth/auth-helper';
 import axios from 'axios';
 
 // API_URL should be set to the base URL of your testimony-related backend endpoints
-const API_URL = 'http://localhost:3000/api/testimony'; 
+const API_URL = 'http://localhost:3000/testimonies';
 
+// Axios instance with default headers
+const axiosInstance = axios.create({
+  baseURL: API_URL,
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+  },
+});
 
+// Automatically add the Authorization header to every request
+axiosInstance.interceptors.request.use((config) => {
+  const token = getToken();
+  if (token) {
+    config.headers['Authorization'] = 'Bearer ' + token;
+  }
+  return config;
+}, (error) => {
+  return Promise.reject(error);
+});
 
 // Function to create a new testimony
-export const createTestimony = async (testimonyData) => {
+const createTestimony = async (testimonyData) => {
   try {
-    // Sends a POST request to the server to create a new testimony
-    const response = await axios.post(API_URL, testimonyData);
-    // Returns the response data from the server
+    const response = await axiosInstance.post('/create', testimonyData);
     return response.data;
-  } catch (error) {
-    // Logs any errors to the console
-    console.error('Error creating testimony:', error);
-    // Rethrows the error for further handling
-    throw error;
+  } catch (err) {
+    console.log('Error creating testimony:', err);
+    throw err;
   }
 };
-
-
 
 // Function to get a testimony by its ID
-export const getTestimonyById = async (testimonyId) => {
+const getTestimonyById = async (testimonyId) => {
   try {
-    // Sends a GET request to fetch a testimony by its ID
-    const response = await axios.get(`${API_URL}/${testimonyId}`);
-    // Returns the fetched testimony data
+    const response = await axiosInstance.get(`/get/${testimonyId}`);
     return response.data;
-  } catch (error) {
-    // Logs any errors to the console
-    console.error('Error fetching testimony:', error);
-    // Rethrows the error for further handling
-    throw error;
+  } catch (err) {
+    console.log('Error fetching testimony:', err);
+    throw err;
   }
 };
-
-
 
 // Function to update a testimony
-export const updateTestimony = async (testimonyId, updatedData) => {
+const updateTestimony = async (testimonyId, updatedData) => {
   try {
-    // Sends a PUT request to update the testimony with the given ID and data
-    const response = await axios.put(`${API_URL}/${testimonyId}`, updatedData);
-    // Returns the updated testimony data
+    const response = await axiosInstance.put(`/update/${testimonyId}`, updatedData);
     return response.data;
-  } catch (error) {
-    // Logs any errors to the console
-    console.error('Error updating testimony:', error);
-    // Rethrows the error for further handling
-    throw error;
+  } catch (err) {
+    console.log('Error updating testimony:', err);
+    throw err;
   }
 };
-
-
 
 // Function to delete a testimony
-export const removeTestimony = async (testimonyId) => {
+const removeTestimony = async (testimonyId) => {
   try {
-    // Sends a DELETE request to remove the testimony with the specified ID
-    const response = await axios.delete(`${API_URL}/${testimonyId}`);
-    // Returns the response data, typically a success message
+    const response = await axiosInstance.delete(`/delete/${testimonyId}`);
     return response.data;
-  } catch (error) {
-    // Logs any errors to the console
-    console.error('Error deleting testimony:', error);
-    // Rethrows the error for further handling
-    throw error;
+  } catch (err) {
+    console.log('Error deleting testimony:', err);
+    throw err;
   }
 };
+
+// Function to list all testimonies
+const listTestimonies = async () => {
+  try {
+    const response = await axiosInstance.get('/');
+    return response.data;
+  } catch (err) {
+    console.log('Error listing testimonies:', err);
+    throw err;
+  }
+};
+// Export the functions to use them in other parts of your application
+export { createTestimony, getTestimonyById, updateTestimony, removeTestimony, listTestimonies };

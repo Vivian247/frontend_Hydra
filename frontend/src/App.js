@@ -16,7 +16,7 @@ import "./styles/contact.css";
 // Importing of components
 import WaterLog from './components/WaterLog/waterLog';
 import User from './components/User/User';
-import Testimonies from './components/Testimony/testimony';   
+import { Testimonies } from './components/Testimony/testimony';  
 import Reminder from './components/Reminder/reminder';
 import ProgressReport from './components/ProgressReport/progressReport';
 
@@ -35,7 +35,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/waterLog" element={<WaterLog />} />
         <Route path="/User" element={<User />}/>
-        <Route path="/testimony" element={<Testimonies />}/>
+        <Route path="/testimonies" element={<Testimonies />}/>
         <Route path="/reminder" element={<Reminder />}/> 
         <Route path="/progressReport" element={<ProgressReport />}/>
         {/* Define other routes */}
@@ -46,3 +46,4 @@ function App() {
 }
 
 export default App;
+console.log(Home, Contact, Header, Footer, WaterLog, User, Testimonies, Reminder, ProgressReport);
