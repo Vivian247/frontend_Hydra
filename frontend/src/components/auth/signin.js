@@ -1,99 +1,110 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import classes from "../authHelper.module.css";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import UserContext from "../../../store/user-context";
 import { signin } from "../../datasource/api-user";
 import { authenticate } from "./auth-helper.js";
 
-//Defines a sign-in form with input fields for email and password.
-const Signin = () => {
-  const { state } = useLocation();
-  const { from } = state || { from: { pathname: "/" } };
-  let navigate = useNavigate();
 
-  const [errorMsg, setErrorMsg] = useState("");
-  const [user, setUser] = useState({
+//Defines a sign-in form with input fields for email and password.
+const SignUp = () => {
+  const [visible, setVisible] = useState(false);
+  const [userData, setUserData] = useState({
+    firstName: "",
+    lastName: "",
     email: "",
+    username: "",
+    phone: "",
+    address: "",
     password: "",
+    countryCode: "",
   });
 
+  
+  
+  const ctx = useContext(UserContext);
+  
   //Handles form changes, submission, and displays error messages if sign-in fails.
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setUser((prevFormData) => ({ ...prevFormData, [name]: value }));
+  const changeHandler = (e) => {
+    const { name, value } = e.target;
+    setUserData((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
   };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    //Utilizes the signin function from the api-user module to interact with the backend.
-    signin(user)
-      .then((data) => {
-        if (data && data.success) {
-          authenticate(data.token, () => {
-            console.log(data.user.id);
-            sessionStorage.setItem("userId", data.user.userId);
-            sessionStorage.setItem("authToken", data.token);
-            navigate(from, { replace: true });
-          });
-        } else {
-          setErrorMsg(data.message);
-        }
-      })
-      .catch((err) => {
-        setErrorMsg(err.message);
-        console.log(err);
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+    userData.profilePicture = "";
+    const data = { ...userData };
+    data.phone = data.countryCode + data.phone;
+    const res = await ctx.signUp(data);
+    if (res) {
+      setUserData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        username: "",
+        phone: "",
+        address: "",
+        password: "",
+        countryCode: "",
       });
+    }
   };
 
   return (
-    <div className="container" style={{ paddingTop: 80 }}>
-      <div className="row">
-        <div className="offset-md-3 col-md-6">
-          <h1>Sign In</h1>
-          {errorMsg && <div className="alert alert-danger">{errorMsg}</div>}
-          <form onSubmit={handleSubmit} className="form">
-            <div className="form-group">
-              <label htmlFor="emailTextField">Email</label>
-              <input
-                type="email" // Changed from "text" to "email"
-                className="form-control"
-                id="emailTextField"
-                placeholder="Enter your email"
-                name="email"
-                value={user.email || ""}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <br />
-            <div className="form-group">
-              <label htmlFor="passwordTextField">Password</label>
-              <input
-                type="password"
-                className="form-control"
-                id="passwordTextField"
-                placeholder="Enter your password"
-                name="password"
-                value={user.password || ""}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <br />
-
-            <button className="btn btn-primary" type="submit">
-              <i className="fas fa-sign-in-alt"></i> Sign In
-            </button>
-
-            <Link to="/" className="btn btn-warning">
-              <i className="fas fa-undo"></i> Cancel
-            </Link>
-            <br />
-            <Link to="/users/create" className="btn btn-link">
-              Don't have an account? Register here
-            </Link>
-          </form>
-        </div>
+    <form className={classes.signUpForm} onSubmit={onSubmitHandler}>
+      <div className={classes.nameBox}>
+        <input name="firstName" type="text" placeholder="First Name" required onChange={changeHandler} value={userData.firstName} />
+        <input name="lastName" type="text" placeholder="Last Name" required onChange={changeHandler} value={userData.lastName} />
       </div>
-    </div>
+
+      <input name="email" type="email" required placeholder="Email" onChange={changeHandler} value={userData.email} />
+      <input name="username" type="text" placeholder="Unique username" required onChange={changeHandler} value={userData.username} />
+
+      <div className={classes.phone}>
+        <div className={classes.selectPhoneBox}>
+          <select name="countryCode" id="countryCode" className={classes.phoneCode} onChange={changeHandler} value={userData.countryCode}>
+            <option value="+1">+1 (CA)</option>
+            <option value="+1">+1 (US)</option>
+            <option value="+44">+44 (UK)</option>
+          </select>
+        </div>
+
+        <input name="phone" type="text" placeholder="123456789" required className={classes.phoneText} onChange={changeHandler} value={userData.phone} />
+      </div>
+      <input name="address" type="text" placeholder="Address" required onChange={changeHandler} value={userData.address} />
+      <div className={classes.passwordContainer}>
+        <input name="password" type={visible ? "text" : "password"} minLength={8} placeholder="********" required onChange={changeHandler} value={userData.password} />
+        {visible && (
+          <VisibilityIcon
+            className={classes.passIcon}
+            onClick={() => {
+              setVisible(false);
+            }}
+          />
+        )}
+        {!visible && (
+          <VisibilityOffIcon
+            className={classes.passIcon}
+            onClick={() => {
+              setVisible(true);
+            }}
+          />
+        )}
+      </div>
+
+      <button type="submit" className={classes.submitBtn}>
+        Sign Up
+      </button>
+      <p className={classes.terms}>
+        By tapping “Sign up” you agree to Hydra’s <span>Terms & Conditions </span> and <span>Privacy Policy</span>.
+      </p>
+    </form>
   );
 };
 

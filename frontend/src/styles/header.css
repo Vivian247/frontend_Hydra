@@ -1,0 +1,32 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #f3f3f3;
+    background: rgba(231, 234, 237, 0.7); /* Using the extracted color with some opacity */
+    border-radius: 8px; /* Rounded corners */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Light white border for a subtle outline */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* A subtle shadow for depth */
+    backdrop-filter: blur(10px); /* The key property for the frosted glass effect */
+    -webkit-backdrop-filter: blur(10px); /* For Safari browser support */
+    padding: 16px; /* Space inside the box */
+  }
+  
+  .navbar a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333;
+       
+  }
+  .vertical-ellipsis {
+    background: none;
+    border: none;
+    font-size: 32px; /* Adjust size for bigger icon */
+    cursor: pointer;
+    /* Text shadow for faux bold */
+    text-shadow: 
+      1px 0 0 currentColor,
+      0 1px 0 currentColor,
+      -1px 0 0 currentColor,
+      0 -1px 0 currentColor;
+  }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../TestimonyStyles.css'; 
+import '../../styles/TestimonyStyles.css'; 
 import "bootstrap/dist/css/bootstrap.min.css";
 import { listTestimonies } from '../../api/Testimonies.js';
 import TestimonyModel from '../../models/testimonyModel.js';
@@ -14,17 +14,18 @@ export function Testimonies() {
       setIsLoading(true); // Start loading
       try {
         const data = await listTestimonies();
-        const models = data.map(item => new TestimonyModel(
-          item.id,
-          item.firstName,
-          item.lastName,
-          item.title,
-          item.content,
-          new Date(item.datePosted),
-          item.rating,
-          item.isVisible,
-        ));
-        setTestimonies(models);
+        console.log(data);
+        // const models = data.map(item => new TestimonyModel(
+        //   item.id,
+        //   item.firstName,
+        //   item.lastName,
+        //   item.title,
+        //   item.content,
+        //   new Date(item.datePosted),
+        //   item.rating,
+        //   item.isVisible,
+        // ));
+        setTestimonies(data);
       } catch (error) {
         console.error('There was an error fetching the testimonies:', error);
       } finally {

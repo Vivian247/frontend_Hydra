@@ -5,7 +5,9 @@ const API_URL = 'http://localhost:3000/testimonies';
 //making the funnction
  const listTestimonies = async () => {
     try{
+        console.log("RUNNING LIST TESTIMONIES");
         const response = await axios.get(API_URL);
+        console.log(response);
         return response.data;
 
     }catch(error)
